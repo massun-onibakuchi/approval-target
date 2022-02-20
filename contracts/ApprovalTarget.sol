@@ -96,7 +96,15 @@ contract ApprovalTarget is EIP712, ReentrancyGuard, IApprovalTarget {
         uint256 nonce = nonces[owner]++;
 
         bytes32 structHash = keccak256(
-            abi.encode(PERMIT_AND_TRANSFER_FROM_TYPEHASH, erc20, owner, recipient, amount, nonce, deadline)
+            abi.encode(
+                PERMIT_AND_TRANSFER_FROM_TYPEHASH,
+                erc20,
+                owner,
+                recipient,
+                amount,
+                nonce,
+                deadline
+            )
         );
 
         bytes32 hash = _hashTypedDataV4(structHash);

@@ -70,7 +70,16 @@ contract Vault is IVault {
         bytes32 r,
         bytes32 s
     ) external override {
-        approvalTarget.permitAndTransferFrom(address(asset), msg.sender, address(this), amount, deadline, v, r, s);
+        approvalTarget.permitAndTransferFrom(
+            address(asset),
+            msg.sender, // owner
+            address(this), // spender
+            amount,
+            deadline,
+            v,
+            r,
+            s
+        );
         // asset.permit(msg.sender, address(this), amount, deadline, v, r, s);
 
         /// do something

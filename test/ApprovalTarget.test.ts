@@ -1,7 +1,12 @@
 import { ethers } from 'hardhat'
 import { expect } from 'chai'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
-import { ApprovalTarget, Vault__factory, ERC20Mock, Vault } from '../typechain-types'
+import {
+  ApprovalTarget,
+  Vault__factory,
+  ERC20Mock,
+  Vault,
+} from '../typechain-types'
 import { splitSignature } from 'ethers/lib/utils'
 
 const toWei = ethers.utils.parseEther
@@ -24,8 +29,12 @@ describe('ApprovalTarget', async function () {
     ;({ chainId } = await ethers.provider.getNetwork())
     ;[owner] = await ethers.getSigners()
 
-    token = (await (await ethers.getContractFactory('ERC20Mock')).deploy('Token', 'TKN')) as ERC20Mock
-    approvalTarget = (await (await ethers.getContractFactory('ApprovalTarget')).deploy()) as ApprovalTarget
+    token = (await (
+      await ethers.getContractFactory('ERC20Mock')
+    ).deploy('Token', 'TKN')) as ERC20Mock
+    approvalTarget = (await (
+      await ethers.getContractFactory('ApprovalTarget')
+    ).deploy()) as ApprovalTarget
 
     const Vault = new Vault__factory(owner)
     vault = await Vault.deploy(approvalTarget.address, token.address)
@@ -33,7 +42,12 @@ describe('ApprovalTarget', async function () {
     await token.mint(owner.address, 1000)
     await token.connect(owner).approve(approvalTarget.address, 1000)
 
-    this.approve = { erc20: token.address, owner: owner.address, spender: vault.address, value: 1000 }
+    this.approve = {
+      erc20: token.address,
+      owner: owner.address,
+      spender: vault.address,
+      value: 1000,
+    }
     this.deadline = Math.floor((Date.now() / 1000) * 2)
     this.nonce = await approvalTarget.nonces(owner.address)
     this.signature = await signPermitApproval(
@@ -49,7 +63,16 @@ describe('ApprovalTarget', async function () {
 
   it('test', async function () {
     const { v, r, s } = this.signature
-    await expect(vault.depositBySig(this.approve.owner, this.approve.value, this.deadline, v, r, s))
+    await expect(
+      vault.depositBySig(
+        this.approve.owner,
+        this.approve.value,
+        this.deadline,
+        v,
+        r,
+        s
+      )
+    )
       .to.emit(token, 'Transfer')
       .withArgs(this.approve.owner, this.approve.spender, this.approve.value)
 
@@ -84,7 +107,9 @@ const signPermitApproval = async (
     deadline,
   }
 
-  const signature = await (await ethers.getSigner(approve.owner))._signTypedData(domain, types, data)
+  const signature = await (
+    await ethers.getSigner(approve.owner)
+  )._signTypedData(domain, types, data)
 
   return splitSignature(signature)
 }

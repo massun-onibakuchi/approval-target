@@ -1,6 +1,5 @@
 {
     "endOfLine": "auto",
-    "printWidth": 120,
     "bracketSpacing": true,
     "overrides": [
         {
