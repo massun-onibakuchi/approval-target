@@ -71,9 +71,6 @@ contract Vault is IVault {
         bytes32 s
     ) external override {
         approvalTarget.permitAndTransferFrom(address(asset), msg.sender, address(this), amount, deadline, v, r, s);
-
-        // Vault Standard ERC-4626 is fully backward compatible with the ERC-20 standard.
-        // ERC-4626 tokenized Vaults MAY implement EIP-2612 to improve the UX of approving shares on various integrations.
         // asset.permit(msg.sender, address(this), amount, deadline, v, r, s);
 
         /// do something

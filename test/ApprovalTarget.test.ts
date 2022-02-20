@@ -24,8 +24,8 @@ describe('ApprovalTarget', async function () {
     ;({ chainId } = await ethers.provider.getNetwork())
     ;[owner] = await ethers.getSigners()
 
-    token = await (await ethers.getContractFactory('ERC20Mock')).deploy('Token', 'TKN') as ERC20Mock
-    approvalTarget = await (await ethers.getContractFactory('ApprovalTarget')).deploy() as ApprovalTarget
+    token = (await (await ethers.getContractFactory('ERC20Mock')).deploy('Token', 'TKN')) as ERC20Mock
+    approvalTarget = (await (await ethers.getContractFactory('ApprovalTarget')).deploy()) as ApprovalTarget
 
     const Vault = new Vault__factory(owner)
     vault = await Vault.deploy(approvalTarget.address, token.address)

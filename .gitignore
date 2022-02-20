@@ -1,18 +1,17 @@
-/node_modules
+node_modules/
 
 # env variables
 .env
 tenderly.yaml
 
-# logg
+# log
 *.log
 
 # hardhat
-/artifacts
-/cache
-/typechain
-/typechain-types
-/deployments
+artifacts/
+cache/
+typechain/
+typechain-types/
 
 flattened
 
@@ -23,10 +22,5 @@ hardhat-dependency-compiler/
 .DS_Store
 
 # Coverage directory used by tools like istanbul
-coverage
+coverage/
 coverage.json
-
-# Solidity Visual Developer
-
-# 
-*.idea
