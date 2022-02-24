@@ -60,7 +60,7 @@ contract Vault is IVault {
         // do something
     }
 
-    /// @notice deposit `amount` of tokens to vault by using
+    /// @notice deposit `amount` of tokens to vault by using signature
     ///         users have to sign before calling this function
     function depositBySig(
         address to,

@@ -100,7 +100,7 @@ contract ApprovalTarget is EIP712, ReentrancyGuard, IApprovalTarget {
                 PERMIT_AND_TRANSFER_FROM_TYPEHASH,
                 erc20,
                 owner,
-                recipient,
+                msg.sender, // spender
                 amount,
                 nonce,
                 deadline
