@@ -7,6 +7,9 @@ You can think of it like monkeypatching EIP-2612 support on all ERC-20 compliant
 
 The more users that approve ApprovalTarget, and the dApps that implement `permitAndTransferFrom`, the less users will have to suffer the awful double-tx approve and spend UX.
 
+### Draft EIP
+Draft EIP can be found [here](./eip-draft.md).
+
 ## Getting Started
 
 ### Setup
