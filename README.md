@@ -1,15 +1,11 @@
 # Approval Target: Monkeypatching EIP-2612 support on ERC-20
 
-## Abstract
-
 ## Motivation
 
 ApprovalTarget is an immutable contract that accepts token approvals from users across various ERC-20s, then enables anyone with a valid user signature to transfer those tokens.
 You can think of it like monkeypatching EIP-2612 support on all ERC-20 compliant tokens.
 
 The more users that approve ApprovalTarget, and the dApps that implement `permitAndTransferFrom`, the less users will have to suffer the awful double-tx approve and spend UX.
-
-##
 
 ## Getting Started
 

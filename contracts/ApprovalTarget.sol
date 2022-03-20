@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+// ref: https://gist.github.com/mhluongo/be1e9aac69a6362657113fa8eaa5d0d8
+
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
