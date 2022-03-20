@@ -102,7 +102,7 @@ contract ApprovalTarget is EIP712, ReentrancyGuard, IApprovalTarget {
                 PERMIT_AND_TRANSFER_FROM_TYPEHASH,
                 erc20,
                 owner,
-                msg.sender, // spender
+                msg.sender, // NOTE: spender
                 amount,
                 nonce,
                 deadline
@@ -111,7 +111,7 @@ contract ApprovalTarget is EIP712, ReentrancyGuard, IApprovalTarget {
 
         bytes32 hash = _hashTypedDataV4(structHash);
 
-        // @note ECDSA wrapper revert if signer is equal to address(0)
+        // NOTE: ECDSA wrapper revert if signer is equal to address(0)
         address signer = ECDSA.recover(hash, v, r, s);
         require(signer == owner, "Invalid signature");
 
