@@ -31,10 +31,18 @@ function nonces(address owner) external view returns (uint)
 
 function PERMIT_AND_TRANSFER_FROM_TYPEHASH() external view returns (bytes32)
 
-function permitAndTransferFrom(address erc20, address owner, address recipient, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external
+function permitAndTransferFrom(address erc20, address owner, address recipient, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external
 ```
 
-The semantics of which are follows [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612)
+The semantics of which are as follows:
+
+For all addresses `erc20`, `owner`, `recipient`, uint256s `value`, `deadline` and `nonce`, uint8 `v`, bytes32 `r` and `s`, a call to `permitAndTransferFrom(erc20, owner, recipient, value, deadline, v, r, s)` will call `transferFrom(owner, recipient, value)`, increment `nonces[owner]` by 1. If and only if the following conditions are met:
+
+ - The current blocktime is less than or equal to `deadline`.
+ - `erc20` is not the zero address. this address must be ERC-20 compliant token address.
+ - `owner` is not the zero address.
+ - `nonces[owner]` (before the state update) is equal to `nonce`.
+ - `r`, `s` and `v` is a valid `secp256k1` signature from `owner` of the message:
 
 NOTE: `spender` in the provided signature must be the same as `msg.sender`. `recipient` isn't attested by a signature from `owner`, and is instead chosen by `msg.sender`, attested in the signature as `spender`.
 
@@ -49,7 +57,7 @@ keccak256(abi.encodePacked(
             erc20,
             owner,
             msg.sender, // NOTE: spender
-            amount,
+            value,
             nonce,
             deadline))
 ))
