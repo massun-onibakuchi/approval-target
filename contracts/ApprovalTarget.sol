@@ -13,7 +13,7 @@ interface IApprovalTarget {
         address erc20,
         address owner,
         address recipient,
-        uint256 amount,
+        uint value,
         uint256 deadline,
         uint8 v,
         bytes32 r,
@@ -57,7 +57,7 @@ contract ApprovalTarget is EIP712, ReentrancyGuard, IApprovalTarget {
     ///        address hasn't been attested by a signature from `owner`, and is
     ///        instead chosen by `msg.sender`, attested in the signature as
     ///        `spender`
-    /// @param amount The amount of `erc20` tokens to transfer from `owner` to
+    /// @param value The amount of `erc20` tokens to transfer from `owner` to
     ///        `recipient` using the base unit of the token, agnostic of the
     ///        token's decimal precision.
     /// @param deadline A timestamp deadline that must be after block.timestamp
@@ -86,7 +86,7 @@ contract ApprovalTarget is EIP712, ReentrancyGuard, IApprovalTarget {
         address erc20,
         address owner,
         address recipient,
-        uint256 amount,
+        uint value,
         uint256 deadline,
         uint8 v,
         bytes32 r,
