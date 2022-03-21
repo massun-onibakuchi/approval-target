@@ -85,7 +85,7 @@ Some basic tests can be found [here](https://github.com/massun-onibakuchi/approv
 
 ## Reference Implementation
 
-[ApprovalTarget.sol](https://github.com/massun-onibakuchi/approval-target/ApprovalTarget.sol)
+[ApprovalTarget.sol](https://github.com/massun-onibakuchi/approval-target/blob/main/contracts/ApprovalTarget.sol)
 
 ## Security Considerations
 
