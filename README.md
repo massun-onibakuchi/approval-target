@@ -6,7 +6,12 @@ ApprovalTarget is an immutable contract that accepts token approvals from users 
 You can think of it like monkeypatching EIP-2612 support on all ERC-20 compliant tokens.
 
 ### Draft EIP
+
 Draft EIP can be found [here](./eip-draft.md).
+
+#### Video
+
+[Youtube](https://youtu.be/aG4XXS56etw)
 
 ## Getting Started
 
